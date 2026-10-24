@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learn City Staff Hub</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<a class="skip-link" href="#main">Skip to content</a>
+<div id="errorBar" class="error-bar" role="alert" hidden></div>
+
+<!-- Loading -->
+<main class="loading" id="loadingView" hidden aria-busy="true">
+  <div><div class="signin__crests"><span class="crest crest--lcms" role="img" aria-label="Learn City Model Schools crest"></span><span class="crest crest--lca" role="img" aria-label="Learn City Academy crest"></span></div>
+  <p>Opening your Staff Hub…</p></div>
+</main>
+
+<!-- Sign in -->
+<main class="signin" id="signinView">
+  <form class="card signin__card" id="signinForm" novalidate>
+    <div class="signin__crests"><span class="crest crest--lcms" role="img" aria-label="Learn City Model Schools crest"></span><span class="crest crest--lca" role="img" aria-label="Learn City Academy crest"></span></div>
+    <h1>Learn City Staff Hub</h1>
+    <p class="sub">Sign in with your school email and code.</p>
+    <div class="form-field"><label class="form-label" for="email">School email</label>
+      <input class="input" id="email" type="email" autocomplete="username" inputmode="email" required></div>
+    <div class="form-field" style="margin-top:12px"><label class="form-label" for="code">Your code</label>
+      <input class="input" id="code" type="password" autocomplete="current-password" required></div>
+    <label class="remember"><input type="checkbox" id="remember"> Keep me signed in on this device</label>
+    <p class="field-error" id="signinError" role="alert" hidden></p>
+    <button class="btn btn--primary" id="signinBtn" type="submit" style="width:100%">Sign in</button>
+    <p class="field-hint" style="text-align:center;margin-top:12px">Forgot your code? Ask the Head of IT.</p>
+  </form>
+</main>
+
+<!-- Hub -->
+<div class="app-shell" id="hubView" hidden data-nav-open="false">
+  <aside class="sidebar" id="sidebar" aria-label="Main">
+    <div class="brand">
+      <div class="brand__crests"><span class="crest crest--lcms" role="img" aria-label="Learn City Model Schools crest"></span><span class="crest crest--lca" role="img" aria-label="Learn City Academy crest"></span></div>
+      <div class="brand__label">Learn City<small>Staff Hub</small></div>
+    </div>
+    <nav>
+      <a class="nav__link" href="#overview" data-view="overview"><span class="nav__icon" aria-hidden="true">⌂</span>Overview</a>
+      <a class="nav__link" href="#apps" data-view="apps"><span class="nav__icon" aria-hidden="true">▦</span>All my apps</a>
+      <a class="nav__link" href="#help" data-view="help"><span class="nav__icon" aria-hidden="true">?</span>Help</a>
+    </nav>
+  </aside>
+  <div class="scrim" id="scrim"></div>
+  <div class="workspace">
+    <header class="topbar">
+      <div class="topbar__left">
+        <button class="btn btn--secondary menu-btn" id="menuBtn" type="button" aria-label="Open menu" aria-controls="sidebar" aria-expanded="false">☰ Menu</button>
+        <div class="topbar__brand"><span class="crest crest--lcms" role="img" aria-label="Learn City Model Schools crest"></span><span class="crest crest--lca" role="img" aria-label="Learn City Academy crest"></span><div><strong>Learn City</strong><small>Staff Hub</small></div></div>
+        <input class="input topbar__search" id="search" type="search" placeholder="Find an app…" aria-label="Find an app">
+      </div>
+      <div class="topbar__actions">
+        <div class="user-chip"><div class="user-chip__meta"><div class="user-chip__name" id="chipName"></div><div class="user-chip__role" id="chipRole"></div></div></div>
+        <button class="btn btn--secondary" id="signoutBtn" type="button">Sign out</button>
+      </div>
+    </header>
+    <main class="page" id="main" tabindex="-1">
+      <section id="view-overview" data-pane="overview">
+        <div class="ticker" id="ticker" role="region" aria-label="Tips for today" hidden>
+          <span class="ticker__label">Tip</span>
+          <div class="ticker__text" id="tickerText"></div>
+          <button class="btn btn--quiet" id="tickerNext" type="button" aria-label="Next tip">Next</button>
+          <button class="btn btn--quiet" id="tickerPause" type="button" aria-label="Pause tips" aria-pressed="false">Pause</button>
+        </div>
+        <div class="hero">
+          <div class="page__eyebrow" style="color:#FBBF24" id="heroDate"></div>
+          <h1 class="hero__title" id="heroTitle">Welcome</h1>
+          <div class="hero__subtitle" id="heroSub"></div>
+          <div class="hero__facts" id="heroFacts"></div>
+        </div>
+        <div id="reminders" role="status"></div>
+        <div id="statsBlock" hidden>
+          <div class="stats-head"><div class="section-label" id="statsLabel"></div></div>
+          <div class="grid grid--4" id="statsGrid"></div>
+          <p class="field-error" id="statsError" hidden></p>
+        </div>
+        <div id="sgBlock" hidden>
+          <div class="stats-head"><div class="section-label" id="sgLabel"></div></div>
+          <div class="grid grid--2" id="sgGrid"></div>
+        </div>
+        <div class="grid grid--main" style="margin-top:24px">
+          <div>
+            <div class="section-label">Your apps</div>
+            <div class="grid grid--2" id="overviewApps"></div>
+          </div>
+          <div>
+            <div class="section-label">This week</div>
+            <div class="card" id="highlights">
+              <div class="card__header"><h2 class="card__title">Weekly highlights</h2><span class="card__meta" id="weekLabel"></span></div>
+              <button class="btn btn--secondary" id="postBtn" type="button" hidden aria-expanded="false" aria-controls="postForm" style="margin-bottom:16px">Post a highlight</button>
+              <form class="post-form" id="postForm" hidden novalidate>
+                <div class="form-field"><label class="form-label" for="hlTitle">Title</label><input class="input" id="hlTitle" maxlength="80" required></div>
+                <div class="form-field"><label class="form-label" for="hlBody">Details <span class="field-hint">(optional)</span></label><textarea class="textarea" id="hlBody" maxlength="600" rows="3"></textarea></div>
+                <div class="form-field"><label class="form-label" for="hlUntil">Show until <span class="field-hint">(optional)</span></label><input class="input" id="hlUntil" type="date"><span class="field-hint">Leave blank to show until Sunday.</span></div>
+                <label class="check"><input type="checkbox" id="hlPin"> Pin to the top</label>
+                <p class="field-error" id="hlError" role="alert" hidden></p>
+                <div class="post-form__actions"><button class="btn btn--primary" id="hlSubmit" type="submit">Post highlight</button><button class="btn btn--secondary" id="hlCancel" type="button">Cancel</button></div>
+              </form>
+              <div id="hlList"></div>
+            </div>
+          </div>
+        </div>
+        <div class="notice" style="margin-top:24px"><p class="notice__title">Something missing?</p>Your apps depend on your role. If you need access to one you cannot see, ask the Head of IT.</div>
+      </section>
+      <section id="view-apps" data-pane="apps" hidden>
+        <div class="page__eyebrow">All my apps</div>
+        <h1 class="page__title">Everything you can open</h1>
+        <p class="page__intro">One click takes you to the app. Each app asks nothing more of you if you are signed in on this device.</p>
+        <div id="appsList"></div>
+      </section>
+      <section id="view-help" data-pane="help" hidden>
+        <div class="page__eyebrow">Help</div>
+        <h1 class="page__title">Using the Staff Hub</h1>
+        <div class="grid grid--2">
+          <div class="card"><h2 class="card__title">Signing in</h2><p>Use your school email and the code the Head of IT gave you. Tick “Keep me signed in” only on your own device.</p></div>
+          <div class="card"><h2 class="card__title">Can’t see an app?</h2><p>The Hub shows only what your role allows. Ask the Head of IT if something should be there.</p></div>
+          <div class="card"><h2 class="card__title">Shared computer?</h2><p>Use Sign out when you finish, so the next person cannot open your apps.</p></div>
+          <div class="card"><h2 class="card__title">Coming later</h2><p>The school calendar, the policies library and staff requests will be added here in later releases.</p></div>
+        </div>
+      </section>
+    </main>
+  </div>
+</div>
+<script src="app.js"></script>
+</body>
+</html>
