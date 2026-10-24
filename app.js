@@ -44,6 +44,9 @@ function appCard(a) {
   if (a.state === 'soon') {
     badge = '<span class="badge badge--info"><span aria-hidden="true">◷</span> Coming soon</span>';
     action = '<span class="btn btn--disabled" aria-disabled="true">Not open yet</span>';
+  } else if (a.state === 'unavailable') {
+    badge = '<span class="badge badge--danger"><span aria-hidden="true">!</span> Needs attention</span>';
+    action = '<span class="btn btn--disabled" aria-disabled="true">Not available</span>';
   } else if (a.state === 'closed') {
     badge = '<span class="badge badge--warning"><span aria-hidden="true">⏸</span> Closed for now</span>';
     action = '<span class="btn btn--disabled" aria-disabled="true">Closed for now</span>';
