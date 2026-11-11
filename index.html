@@ -119,17 +119,14 @@
       </section>
       <section id="view-help" data-pane="help" hidden>
         <div class="page__eyebrow">Help</div>
-        <h1 class="page__title">Using the Staff Hub</h1>
-        <div class="grid grid--2">
-          <div class="card"><h2 class="card__title">Signing in</h2><p>Use your school email and the code the Head of IT gave you. Tick “Keep me signed in” only on your own device.</p></div>
-          <div class="card"><h2 class="card__title">Can’t see an app?</h2><p>The Hub shows only what your role allows. Ask the Head of IT if something should be there.</p></div>
-          <div class="card"><h2 class="card__title">Shared computer?</h2><p>Use Sign out when you finish, so the next person cannot open your apps.</p></div>
-          <div class="card"><h2 class="card__title">Coming later</h2><p>The school calendar, the policies library and staff requests will be added here in later releases.</p></div>
-        </div>
+        <h1 class="page__title">Help for all your apps</h1>
+        <p class="page__intro">Answers for every app you use. Can’t find yours? Report it at the bottom and it goes straight to the Head of IT.</p>
+        <div class="card" id="hubHelp"></div>
       </section>
     </main>
   </div>
 </div>
 <script src="app.js"></script>
+<script src="help.js" data-app="ALL" data-exclude="recruitment,homework" data-email-field="email" data-code-field="code" data-mount="hubHelp" data-button="off"></script>
 </body>
 </html>
